@@ -7,15 +7,15 @@
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "file:../node_modules/react",
-    "react-dom": "^16.9.0",
-    "react-scripts": "^3.0.1",
+    "react-dom": "file:../node_modules/react-dom",
+    "react-scripts": "file:../node_modules/react-scripts",
     "use-debounce-effect": "file:.."
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "node ../node_modules/react-scripts/bin/react-scripts.js build",
+    "test": "node ../node_modules/react-scripts/bin/react-scripts.js test --env=jsdom",
+    "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "browserslist": [
     ">0.2%",

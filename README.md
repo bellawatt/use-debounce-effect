@@ -13,14 +13,21 @@ npm install --save use-debounce-effect
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import axios from 'axios';
+import { useDebounceEffect } from '@bellawatt/react-hooks'
 
-import { useMyHook } from 'use-debounce-effect'
+const DebounceEffectExample = () => {
+  const [value, setValue] = useState('');
 
-const Example = () => {
-  const example = useMyHook()
+  useDebounceEffect(() => {
+    someSlowFunction();
+  }, 1000, [value]));
+
   return (
-    <div>{example}</div>
+    <div>
+      <input value={value} onChange={e => setValue(e.currentTarget.value)} />
+    </div>
   )
 }
 ```

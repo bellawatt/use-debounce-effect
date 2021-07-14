@@ -1,21 +1,18 @@
-import * as React from 'react'
+import { useEffect, useRef } from 'react'
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState({
-    counter: 0
-  })
+export default function useDebounceEffect(fn, delay, values, runOnInitialize = false) {
+  const didMountRef = useRef(null)
 
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval)
+  useEffect(() => {
+    if (!runOnInitialize && !didMountRef.current) {
+      didMountRef.current = true
+      return
     }
-  }, [])
 
-  return counter
-}
+    const handler = setTimeout(() => {
+      fn()
+    }, delay)
+
+    return () => clearTimeout(handler)
+  }, values)
+};

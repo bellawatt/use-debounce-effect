@@ -1,11 +1,20 @@
-import React from 'react'
-import { useMyHook } from 'use-debounce-effect'
+import React, {useState} from 'react'
+import useDebounceEffect from 'use-debounce-effect'
 
 const App = () => {
-  const example = useMyHook()
+  const [text, setText] = useState('');
+  const [delayedText, setDelayedText] = useState('');
+
+  useDebounceEffect(() => {
+    setDelayedText(text);
+  }, 1000, [text])
+
   return (
     <div>
-      {example}
+      <input type="text" onChange={e => setText(e.currentTarget.value)} value={text} />
+
+      <p>Text: {text}</p>
+      <p>Delay: {delayedText}</p>
     </div>
   )
 }
